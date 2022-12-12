@@ -6,8 +6,8 @@ import discord
 
 # 環境変数の読み込み
 load_dotenv()
-DISCORD_TOKEN = os.getenv('discordToken')
-OPENAPI_TOKEN = os.getenv('openapiToken')
+DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
+OPENAI_APIKEY = os.getenv('OPENAI_APIKEY')
 
 # bot command
 BOT_COMMAND = '!gpo'
