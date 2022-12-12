@@ -13,7 +13,7 @@ OPENAI_APIKEY = os.getenv('OPENAI_APIKEY')
 BOT_COMMAND = '!gpo'
 
 # 共有ライブラリの読み込み
-lib = cdll.LoadLibrary("./build/ojosama.dll")
+lib = cdll.LoadLibrary("./shared/ojosama.dll")
 
 ojosama = lib.convertOjosama
 ojosama.argtypes = [c_char_p]
