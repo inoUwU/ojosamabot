@@ -37,7 +37,7 @@ def fetch_answer(question: str):
         model="text-davinci-003",
         prompt=prompt,
         temperature=0,
-        max_tokens=100,
+        max_tokens=300,
         top_p=1,
         frequency_penalty=0.0,
         presence_penalty=0.0,
@@ -61,6 +61,6 @@ async def on_message(message):
         question = message.content.replace(BOT_COMMAND, '').strip()
         ans = fetch_answer(question=question)
         res_msg = ojosama(ans.encode('utf-8')).decode('utf-8')
-        await message.channel.send(res_msg)
+        await message.channel.send(res_msg, reference=message)
 
 client.run(DISCORD_TOKEN)
