@@ -91,10 +91,19 @@ async def on_message(message):
 
     if message.content.startswith(BOT_COMMAND):
         await message.channel.typing()
-        question = message.content.replace(BOT_COMMAND, '').strip()
-        ans = fetch_answer(question=question)
-        print(ans)
-        res_msg = ojosama(ans.encode('utf-8')).decode('utf-8')
-        await message.channel.send(res_msg, reference=message)
+
+        content: str = message.content.replace(BOT_COMMAND, '').strip()
+        if content.startswith("-i"):
+            content = content.replace("-i", '').strip()
+            # ans = fetch_image(image_content=content)
+            # print(ans)
+            # TODO 文字列と画像を返信
+            res_msg = ojosama("出来ました!".encode('utf-8')).decode('utf-8')
+            await message.channel.send(res_msg, reference=message)
+        else:
+            ans = fetch_answer(question=content)
+            print(ans)
+            res_msg = ojosama(ans.encode('utf-8')).decode('utf-8')
+            await message.channel.send(res_msg, reference=message)
 
 client.run(DISCORD_TOKEN)
