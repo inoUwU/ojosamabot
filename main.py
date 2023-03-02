@@ -14,11 +14,11 @@ openai.api_key = os.getenv('OPENAI_APIKEY')
 BOT_COMMAND = '!po'
 
 # 共有ライブラリの読み込み
-lib = cdll.LoadLibrary("./shared/ojosama.dll")
+# lib = cdll.LoadLibrary("./shared/ojosama.dll")
 
-ojosama = lib.convertOjosama
-ojosama.argtypes = [c_char_p]
-ojosama.restype = c_char_p
+# ojosama = lib.convertOjosama
+# ojosama.argtypes = [c_char_p]
+# ojosama.restype = c_char_p
 
 # bot 設定
 intents = discord.Intents.default()
@@ -98,12 +98,14 @@ async def on_message(message):
             # ans = fetch_image(image_content=content)
             # print(ans)
             # TODO 文字列と画像を返信
-            res_msg = ojosama("出来ました!".encode('utf-8')).decode('utf-8')
+            #   res_msg = ojosama("出来ました!".encode('utf-8')).decode('utf-8')
+            res_msg = ans
             await message.channel.send(res_msg, reference=message)
         else:
             ans = fetch_answer(question=content)
             print(ans)
-            res_msg = ojosama(ans.encode('utf-8')).decode('utf-8')
+            res_msg = ans
+            # res_msg = ojosama(ans.encode('utf-8')).decode('utf-8')
             await message.channel.send(res_msg, reference=message)
 
 client.run(DISCORD_TOKEN)
